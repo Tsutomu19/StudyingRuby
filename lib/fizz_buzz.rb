@@ -35,3 +35,56 @@ puts fizz_buzz(15)
 
 # 数値関連のクラスにはいくつか種類があります。たとえば整数であればIntegerクラス、小数であればFloatクラスになります
 
+
+
+
+
+
+
+
+# 1 && 2 && 3
+# 1 && nil && 3
+# 1 && false && 3
+# ご覧のとおり、3やnilといった値が式全体の戻り値になっています。Rubyは式全体が真または偽であることが決定するまで左辺から順に式を評価します。式全体の真または偽が確定すると、式の評価を終了し、最後に評価した式の値を返します。たとえば、1&&2&&3であれば、すべての式を評価する必要があったため、最後の式である3が戻り値になっています。一方、1&&nil&&3は2つめのnilを評価した時点で式全体の真偽値が偽であることが確定したため、そこで評価を終了し、nilを返します。
+
+# 伊藤 淳一. プロを目指す人のためのRuby入門 言語仕様からテスト駆動開発・デバッグ技法まで (Software Design plus) (Japanese Edition) (Kindle の位置No.1738-1745). Kindle 版. 
+
+# Aが真か　真でなければBせよとういう制御フローを実現する際に便利です。
+def greeting(country)
+    country or return 'countryを入力して下さい'
+
+    if country == 'japan'
+        'こんにちは'
+    else
+        'hello'
+    end
+end
+
+greeting(nil)
+greeting('japan')
+
+
+status = 'error'
+if status != 'ok'
+    '何か異常があります。'
+end
+
+status = 'error'
+unless status == 'ok'
+'何か異常があります。'
+else
+    '正常です'
+end
+
+
+
+# thenが使える。
+status = 'error'
+unles stasts == 'ok' then
+'何か異常があります'
+end
+
+status = 'error'
+if status !='ok'
+    '何か異常があります。'
+end
