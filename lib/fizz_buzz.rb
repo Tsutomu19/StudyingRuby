@@ -33,3 +33,5 @@ puts fizz_buzz(15)
 
 #%q!!はシングルクオートで囲んだことと同じになるputs%q!Hesaid,"Don'tspeak."!#=>Hesaid,"Don'tspeak."#%Q!!はダブルクオートで囲んだことと同じになる（改行文字や式展開が使える）something="Hello."puts%Q!Hesaid,"#{something}"!#=>Hesaid,"Hello."
 
+# 数値関連のクラスにはいくつか種類があります。たとえば整数であればIntegerクラス、小数であればFloatクラスになります
+
