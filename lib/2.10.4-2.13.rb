@@ -148,3 +148,56 @@ def bar
 end
 
 foo
+
+
+
+
+
+
+
+
+# 2.11.2
+
+.empty?
+'abc'.empty?
+# 空文字列であればtrue
+
+
+'watch'.include?('at')
+'watch'.include?('in')
+# 引数の文字列が含まれていればtrue
+
+
+
+1.odd?
+2.odd?
+
+# 奇数ならtrue
+# 偶数ならfalse
+
+
+
+1.even? 
+2.even?
+# 奇数ならtrue
+
+
+nil.nil?
+'abc'.nil?
+1.nil? 
+# オブジェクトがnilであればtrue
+
+
+
+def multiple_of_three?(n)
+    n % 3 == 0
+end
+multiple_of_three?(4)
+multiple_of_three?(5)
+multiple_of_three?(6)
+
+# ?で終わるメソッドは自分で定義することもできる
+# 真偽値を返す目的のメソッドであれば、？で終わらせるようにした方が良い。
+
+
+2.11.3
