@@ -241,5 +241,51 @@ upcase! = 'ruby'.upcase!
 
 
 
-# 2.12
+# 2.12.1
 
+
+'hello'.length
+'hello'.size
+
+
+a = 
+if  true
+    '真です'
+    else
+        '偽です'
+end
+a
+
+
+b = def foo; end
+b
+
+
+
+
+
+
+
+
+a = 'hello'
+b = 'hello'
+a.object_id
+b.object_id
+
+c = b
+c.object_id
+
+
+def m(d)
+    d.object_id
+end
+m(c)
+
+
+a.equal?(b)
+b.equal?(c)
+
+
+# 参照の概念は本書の中でもなんども登場。特に
+# 文字列や配列、ハッシュと行った変更可能なオブジェクトを扱う場合は同一のオブジェクトを参照しているのか、
+# 異なるオブジェクトを参照しているのかを意識しないと思いがけないバグを作り込んでしまう。
