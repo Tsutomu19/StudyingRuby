@@ -184,7 +184,7 @@ foo
 
 nil.nil?
 'abc'.nil?
-1.nil? 
+1.nil?
 # オブジェクトがnilであればtrue
 
 
@@ -200,4 +200,46 @@ multiple_of_three?(6)
 # 真偽値を返す目的のメソッドであれば、？で終わらせるようにした方が良い。
 
 
-2.11.3
+# 2.11.3
+
+a = 'ruby'
+
+a.upcase
+a
+
+a.upcase!
+a
+
+# !で終わるメソッドは注意が必要apiドキュメントをみて確認。
+
+def reverse_upcase!(s)
+    s.reverse!.upcase!
+end
+
+s = 'ruby'
+reverse_upcase!(s)
+s
+
+
+odd? = 1.odd?
+# はエラーになる
+
+upcase! = 'ruby'.upcase!
+# こちらも同様
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# 2.12
+
