@@ -17,15 +17,7 @@ def fizz_buzz(n)
     end
 end
 
-require 'minitest/autorun'
 
-class FizzBuzzTest < Minitest::FileTest
-    def test_fizz_buzz
-        assert_epual '1',fizz_buzz(1)
-        assert_epual '2',fizz_buzz(2)
-        assert_epual 'Fizz',fizz_buzz(3)
-    end
-end
 
 
 # puts fizz_buzz(1)
@@ -63,41 +55,41 @@ end
 # 伊藤 淳一. プロを目指す人のためのRuby入門 言語仕様からテスト駆動開発・デバッグ技法まで (Software Design plus) (Japanese Edition) (Kindle の位置No.1738-1745). Kindle 版. 
 
 # Aが真か　真でなければBせよとういう制御フローを実現する際に便利です。
-def greeting(country)
-    country or return 'countryを入力して下さい'
+# def greeting(country)
+#     country or return 'countryを入力して下さい'
 
-    if country == 'japan'
-        'こんにちは'
-    else
-        'hello'
-    end
-end
+#     if country == 'japan'
+#         'こんにちは'
+#     else
+#         'hello'
+#     end
+# end
 
-greeting(nil)
-greeting('japan')
-
-
-status = 'error'
-if status != 'ok'
-    '何か異常があります。'
-end
-
-status = 'error'
-unless status == 'ok'
-'何か異常があります。'
-else
-    '正常です'
-end
+# greeting(nil)
+# greeting('japan')
 
 
+# status = 'error'
+# if status != 'ok'
+#     '何か異常があります。'
+# end
 
-# thenが使える。
-status = 'error'
-unles stasts == 'ok' then
-'何か異常があります'
-end
+# status = 'error'
+# unless status == 'ok'
+# '何か異常があります。'
+# else
+#     '正常です'
+# end
 
-status = 'error'
-if status !='ok'
-    '何か異常があります。'
-end
+
+
+# # thenが使える。
+# status = 'error'
+# unless status == 'ok' then
+# '何か異常があります'
+# end
+
+# status = 'error'
+# if status !='ok'
+#     '何か異常があります。'
+# end
