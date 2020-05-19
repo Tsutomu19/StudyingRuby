@@ -4,6 +4,7 @@
 # ・3で割り切れる数値を引数に渡すと、“Fizz”を返す。
 # ・5で割り切れる数値を引数に渡すと、“Buzz”を返す。
 # ・15で割り切れる数値を引数に渡すと、“FizzBuzz”を返す。・それ以外の数値はその数値を文字列に変えて返す。
+
 def fizz_buzz(n)
     if n % 15 == 0
         'Fizz Buzz'
@@ -15,13 +16,25 @@ def fizz_buzz(n)
         n.to_s
     end
 end
-puts fizz_buzz(1)
-puts fizz_buzz(2)
-puts fizz_buzz(3)
-puts fizz_buzz(4)
-puts fizz_buzz(5)
-puts fizz_buzz(6)
-puts fizz_buzz(15)
+
+require 'minitest/autorun'
+
+class FizzBuzzTest < Minitest::FileTest
+    def test_fizz_buzz
+        assert_epual '1',fizz_buzz(1)
+        assert_epual '2',fizz_buzz(2)
+        assert_epual 'Fizz',fizz_buzz(3)
+    end
+end
+
+
+# puts fizz_buzz(1)
+# puts fizz_buzz(2)
+# puts fizz_buzz(3)
+# puts fizz_buzz(4)
+# puts fizz_buzz(5)
+# puts fizz_buzz(6)
+# puts fizz_buzz(15)
 
 
 
