@@ -65,3 +65,98 @@ sum = numbers.inject(0){|result,n|result + n}
 
 
 4.5
+
+(1.5).include?(1)
+# true
+a = [1,2,3,4,5]
+a[1..3]
+# 2,3,4
+a = 'abcdef'
+a[1..3]
+# 2番目から4文字目までの要素を取得する
+
+
+
+
+
+
+
+
+def liquid?(temperature)
+    0 <= temperature && temperature < 100
+end
+
+liquid?(-1)
+liquid?(0)
+liquid?(99)
+liquid?(100)
+
+
+
+def liquid?(temperature)
+    (0...100).include?(temperature)
+end
+
+
+lipuid?(-1)
+lipuid?(0)
+lipuid?(99)
+lipuid?(100)
+
+
+
+# 範囲オブジェクトとcase分の組み合わせ
+def charge(age)
+    case age
+    when 0..5
+        0
+    when 6..12
+        300
+    when 13..18
+        600
+    else
+        1000
+    end
+end
+charge(3)
+charge(16)
+
+
+
+(1..5).to_a
+(1...5).to_a
+
+('a'..'e').to_a
+('a'...'e').to_a
+
+
+[*1..5]
+[*1...5]
+
+
+numbers = (1..4).to_a
+sum = 0
+numbers.each {|n| sum += n}
+sum
+
+sum = 0
+(1..4).each {|n|sum += n}
+sum
+
+
+numbers = []
+(1..10).step(2){|n| numbers << n}
+numbers
+
+
+
+to_hex(0,0,0)
+
+
+
+
+
+
+
+
+
