@@ -1,0 +1,99 @@
+
+sum = 0
+5.times{ |n|sum += n}
+sum
+
+
+
+
+sum = 0
+5.times { sum += 1 }
+sum
+
+
+
+
+a = []
+10.upto(14){|n| a << n}
+
+a = []
+14.downto(10){ |n| a << n}
+a
+
+
+
+a []
+1.step{10,2}{|n| a << n}
+a
+
+# 1から10まで2ずつ増やしていく
+
+a = []
+10.step(1,-2){|n|a << n}
+a
+# 10から1まで-2ずつしていく
+
+
+
+
+a = []
+while a.size < 5
+    a << 1
+end
+a
+配列の数が5より小さくなるまで1を代入
+声に出して理解するのが良い。というより出さないといけない。
+
+
+
+a = []
+while a.size < 5 do a << 1 end
+    a
+end
+a = []
+a << 1 while a.size < 5
+a
+
+
+
+a = []
+while false
+    a << 1
+end
+a
+
+
+begin
+    a << 1
+end while false 
+a
+
+
+a = [10,20,30,40,50]
+until a.size <= 3
+    a.delete_at(-1)
+end
+a
+
+
+numbers = [1,2,3,4]
+sum = 0
+for n in numbers
+    sum += n
+end
+sum 
+
+sum = 0
+for n in numbers do sum += n end
+sum
+
+
+
+4.9.5
+
+nunmbers = [1,2,3,4]
+sum = 0
+numbers.each do |n|
+    sum += n
+end
+sum
