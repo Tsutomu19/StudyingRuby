@@ -235,7 +235,7 @@ hash['def']
 # たてエバ文字列とシンボルを混在させることもできます。
 # しかし、無用な混乱をまねくので必要がない限りデータ型は揃える。
 
-一方、ハッシュに格納する値に関しては、異なるデータ型が混在するケースもよくあります。
+# 一方、ハッシュに格納する値に関しては、異なるデータ型が混在するケースもよくあります。
 person = {
     name:'Alice',
     age:20,
@@ -243,14 +243,71 @@ person = {
     phones:{home:'1234-0000',mobile:'5678-0000'}
 }
 }
-
-
-
+# 値が文字列
+# 値が数値
+# 値が配列
+# 値がハッシュ
 person[:age]
 person[:friends]
 person[:phones][:mobile]
+# 20
+# ["Bob","Carol"]
+# 5678-0000
+
+
+# 543メソッドのキーワード引数とハッシュ
+
+def buy_burger(menu,drink,potato)
+    # ハンバーガーを購入
+    if drink
+    # ドリンクを購入
+    end
+end
+if potato
+    # ポテトを購入
+end
+buy_burger('cheese',true,true)
+
+# フィッシュバーガーとドリンクを購入する
+buy_burger('fish',true,false)
+
+# パッっとみて二つ目と三つ目の引数が何かわかるか。
+こういうケースではメソッドのキーワード引数を使うと加速性が上がる
+
+def　メソッド名(キーワード引数1:デフォルト値1,キーワード引数2:デフォルト値2)
+    # メソッドの実装
+end
+
+例えば、先ほどのbuy_burgerメソッドでキーワード引数を使う
+
+def buy_burger(menu,drink:true,potato:true)
+
+end
+
+
+buy_burger('fish',potato:false)
+buy_buger('cheese')
+# キーワード引数は呼び出し時に自由に順番を入れ替えることができます。
+
+buy_burger('fish',potato:false,drink:true)
+# 存在しないキーワード引数を指定した場合はエラーになります。
+buy_burger('fish',salad:true)
+
+キーワード引数のデフォルトちは省力することもできます。
+
+def buy_burger(menu,drink:,potato:)
+    
+end
+buy_burger('cheese',drink:true,potato:true)
+
+buy_burger('fish',potato:false)
+
+キーワード引数を使うメソッドを呼び出す場合、キーワード引数に一致するハッシュを引数として渡すこともできます。
+
+
+params = {drink: true,potato:false}
+buy_burger('fish',params)
 
 
 
-
-
+5.5
