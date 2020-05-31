@@ -311,3 +311,9 @@ buy_burger('fish',params)
 
 
 5.5
+例題:長さの単位変換プログラムの作成
+
+convert_length(1,'m','in')
+convert_length(15,'in','m')
+convert_length(35000,'ft','m')
+
