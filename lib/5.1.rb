@@ -187,16 +187,68 @@ currencies[:japan]
 5.4
 
 
+ハッシュのキーにシンボルを使う
+
+currencies = {:japan => 'yen',:us=>'dollar',:india=>'rupee'}
+currencies[:us]
+
+currencies[:italy] = 'euro'
+
+
+シンボルがキーになる場合、=>を使わずに"シンボル:値"という記法でハッシュを作成できます。
+
+currencies = [japan:'yen',us:'dollar',india:'rupee']
+
+currencies[:us]
 
 
 
+# キーも値もシンボルのときは次のようになる
+{japan: :yen, us: :dollar,india: :rupee}
+
+上のハッシュは下のハッシュと全く同じです
+
+
+{:japan =>:yen,:us=>:dollar,india=>:rupee}
 
 
 
+5.4.2　キーや値に異なるデータ型を混在させる
+hash = {'abc'=> 123, def: 456}
+
+
+hash['abc']
+hash[:def]
+
+hash[:abc]
+hash['def']
+
+# 上から
+# =>123
+# 456
+# nil
+# nil
 
 
 
+# ハッシュのキーは同じデータ型にする必要はありません。
+# たてエバ文字列とシンボルを混在させることもできます。
+# しかし、無用な混乱をまねくので必要がない限りデータ型は揃える。
 
+一方、ハッシュに格納する値に関しては、異なるデータ型が混在するケースもよくあります。
+person = {
+    name:'Alice',
+    age:20,
+    friends:['Bob','Carol'],
+    phones:{home:'1234-0000',mobile:'5678-0000'}
+}
+}
+
+
+
+person[:age]
+person[:friends]
+person[:phones][:mobile]
 
 
 
