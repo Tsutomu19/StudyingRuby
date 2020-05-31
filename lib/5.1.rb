@@ -139,3 +139,66 @@ currencies.delete('italy'){|key|"Not found:#{key}"}
 
 
 5.3
+
+:シンボルの名前
+
+:apple
+:japan
+:ruby_is_fun
+
+'apple'
+'japan'
+'fuby_is_fun'
+
+
+# シンボルと文字列の違い
+# は、処理の速さの違い。
+:apple.class
+# =>Symbol
+'apple'.class
+# =>String
+
+
+'apple' == 'apple'
+:apple == :apple
+
+
+シンボルの特徴と主な用途
+
+# 表面上は文字列っぽいので、理解しやすい。
+# 内部的には整数なので、コンピュータは高速に値を比較できる。
+# 同じシンボルは同じオブジェクトであるため、メモリの使用効率が良い
+# イミュータブルなので、勝手に値が変えらレル心配がない。
+
+currencies = {'japan'=>'yen','us'=>'dollar','india'=>'rupee'}
+
+currencies['japna']
+
+currencies = {:japan => yen,:us =>'dollar',:india=>'rupee'}
+currencies[:japan]
+
+
+'apple'.methods:apple.methods
+
+
+
+
+
+5.4
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
