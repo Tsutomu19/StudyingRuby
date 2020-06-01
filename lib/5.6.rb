@@ -150,3 +150,71 @@ h = Hash.new {|hash,key|hash[key] = 'hello'}
 h[:foo]
 h[:bar]
 h
+
+
+# 5.7.1　シンボルを作成する様々な方法
+作成する場合はコロンに続けて、変数名やクラス名、メソッド名の識別子として、有効な文字列を書きます。
+:apple
+:Apple
+:ruby_is_fun
+:okay?
+:welcome!
+:_secret
+:$dollar
+:@at_mark
+
+# 5.7.2 %記法でシンボルやシンボルの配列を作成する
+
+%s!ruby is fun!
+%s(ruby is fun)
+シンボルの配列を作成する場合はm%iを使うことができます。
+この場合、空白文字がう要素の区切りになります。
+
+# 5.7.3　シンボルと文字列の関係
+文字列とシンボルは見た目は似ていても別物で互換性はありません。
+
+stirng = 'apple'
+symbol = :apple
+string == symbol 
+# =>false
+string + symbol 
+# TypeError
+
+# ただしto_symメソッドを使うと、文字列をシンボルに変換することができます。
+string = 'apple'
+symbol = :apple
+
+string.to_sym
+# =>:apple
+string.to_sym == symbol 
+# true
+
+
+
+
+
+# 繰り返しになりますが、
+# ハッシュ
+# シンボル
+# は配列と同様によく使われます。
+# 理解があやふやん人はこの賞を繰り返し読み、サンプルコードを自分の手で動かしてしっかりと知識を定着させましょう。
+
+# 条件分岐や真偽値の扱いでよく使われる定番の書き方（イディオム）の紹介
+
+
+# 国名に応じて通過を返す
+def find_currency(country)
+    currencies = {japan:'yen',us:'dollar',india:'rupee'}
+    currencies[country]
+end
+# 指定された国の通過を大文字にして返す
+def show_currency(country)
+    currency = find_currency(country)
+    # nilでないことをチェック
+    if currency
+        currency.upcase
+    end
+end
+通過が見つかる場合と見つからない場合の結果を確認
+show_currency(:japan)
+show_currency(:brazil)
