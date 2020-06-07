@@ -26,3 +26,19 @@ class ConvertHashSyntaxTest < Minitest::Test
         assert_equal'{}',convert_hash_syntax('{}')
     end
 end
+
+
+# <<~はヒアドキュメントからインデントを自動的に取り除いてくれる記法です。
+# old_syntax = <<TEXT
+# {
+#     :name => 'Alice',
+#     :age=>20,
+#     :gender => :female
+# }
+
+# TEXT
+
+
+
+
+
