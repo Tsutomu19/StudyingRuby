@@ -136,3 +136,48 @@ user.name
 
 
 
+
+7.5.2クラスメソッドやクラス構文直下のself
+
+クラス定義文内に登場するselfは場所によってそのクラスのインスタンス自身を表したりクラス自身を表したりします。以下のコードをみてください。
+
+class Foo
+    puts"クラス構文の直下のself:#{self}"
+
+    def self.bar
+        puts"クラスメソッド内のself: #{self}"
+    end
+
+    def baz
+        puts "インスタンスメソッド内のself:#{self}"
+    end
+end
+
+Foo.bar
+foo = Foo.new
+foo.baz
+
+クラス構文の直下とクラスメソッド内でのselfはFooと表示されます。
+このFooはFooクラス自身を表しています。一方インスタンスメソッド内でのselfは<Foo:0x007f9d7c0467c8>と表示されます。
+これはFooクラスのインスタンスを表しています。
+
+class Foo
+    def self.bar
+        self.baz
+    end
+
+    def baz
+        self.bar
+    end
+end
+
+Foo.bar
+
+foo = Foo.new
+foo.baz
+
+
+
+class Foo
+    
+end
