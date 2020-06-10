@@ -98,4 +98,41 @@ calculation = Calculation.new()
 calculation.addtion(1,2,3,4,5)
 # =>15
 
+7.5.2 selfのつけ忘れで不具合が発生するケース
+
+ところが、値をセットするname = メソッドの場合は話が異なります。以下のコードをみてください。
+
+class User
+    attr_accessor :name
+
+    def initialize(name)
+        @name = name
+    end
+
+    def rename_to_bob
+        name = 'Bob'
+    end
+
+    def rename_to_carol
+        self.name = 'Carol'
+    end
+
+    def rename_to_dave
+        @name = 'Dave'
+    end
+end
+user = User.new('Alice')
+
+user.rename_to_bob
+user.name
+
+user.rename_to_dave
+user.name
+
+# rename_to_boobメソッドだけリネームがちゃんとできずk"Alic"のままになっている
+# なぜか？説明用んでもわからなかった。わからない。理解できない。
+
+
+
+
 
