@@ -135,3 +135,44 @@ end
 # indexメソッドは配列のなかから引数に合致するようsの添字を取得するメソッドです。
 [:umeda,:juso, :mikuni].index(:juso)
 # => 1
+
+
+
+# 7.4.4　テストコードのリファクタリング
+
+
+class GateTest < Minitest::Test
+    def test_gate
+        umeda = Gate.new(:umeda)
+        juso = Gate.new(:juso)
+        
+        ticket = Ticket.new(150)
+        umeda.enter(ticket)
+        assert juso.exit(ticket)
+    end
+    
+    def test_umeda_to_mikuni_when_fare_is_not_enough
+        umeda = Gate.new(:umeda)
+        mikuni = Gate.new(:mikuni)
+
+        ticket = Ticket.new(150)
+        umeda.enter(ticket)
+        refute mikuni.exit(ticket)
+    end
+end
+
+
+
+コードを見ると気になる店が二つあります。
+人うめはテストメソッドの名前に一貫性がないこと。もう一つはこのままいくとGat4eオブジェクトの作成が毎回必要になることです。
+最初にテストメソッドの名前を修正しましょう。
+一つ目のテストシナリオで作成したtest_gateメソッドを次のように変更してください。
+def test_umeda_to_juso
+
+end
+test_umeda_to_juso_when_fare_is_enouguとしてもいいのですが運賃が足りない
+場合のテストケースは作れないのでここでは_when以降の名前は省略することにしました。
+続いてGateオブジェクトの作成を共通化しましょう。
+Minitestではsetupメソッドを定義すると、テストメソッドの実行前に毎回setupメソッドが呼び出されます。
+そこでGateオブジェクトはsetupメソッドで作成し、かくgateメソッドをインスタンス変数に格納することにします。
+かくテストメソッドではローカル変数の代わりにこのインスタンス変数を使います。
