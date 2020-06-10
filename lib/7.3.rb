@@ -165,8 +165,8 @@ user = User.new('Alice')
 user.name
 
 
-同じく、インスタンス変数の内容を外部から変更したい倍も変更用のメソッドを定義します。
-他の言語の経験者は驚くかもしれませんがRubyは=で終わるメソッドを定義すると、変数に代入するような形式でそのメソッドを呼び出すことができます。
+# 同じく、インスタンス変数の内容を外部から変更したい倍も変更用のメソッドを定義します。
+# 他の言語の経験者は驚くかもしれませんがRubyは=で終わるメソッドを定義すると、変数に代入するような形式でそのメソッドを呼び出すことができます。
 
 
 
@@ -188,15 +188,15 @@ user.name
 # =>Bob
 
 
-このようにインスタンス変数の値を読み書きするメソッドのことを
-アクセサリメソッドと呼びます。他の言語では
-ゲッターメソッドやセッターメソッドと呼ぶこともあります。
+# このようにインスタンス変数の値を読み書きするメソッドのことを
+# アクセサリメソッドと呼びます。他の言語では
+# ゲッターメソッドやセッターメソッドと呼ぶこともあります。
 
 
 
-Rubyの場合、単純にインスタンス変数の内容を外部から読み書きするのであれば、attr_accessorというメソッドを
-使って退屈なメソッド定義を省略することができます。
-attr_accessorメソッドを使うと上記のコードは次のように書き換えられます。
+# Rubyの場合、単純にインスタンス変数の内容を外部から読み書きするのであれば、attr_accessorというメソッドを
+# 使って退屈なメソッド定義を省略することができます。
+# attr_accessorメソッドを使うと上記のコードは次のように書き換えられます。
 
 
 class User
@@ -215,7 +215,7 @@ user.name = 'Bob'
 user.name
 # =>Bob
 
-インスタンス変数の内容を読み取り専用にしたい場合はattr_accessorの代わりにattr_readerメソッドを使います
+# インスタンス変数の内容を読み取り専用にしたい場合はattr_accessorの代わりにattr_readerメソッドを使います
 
 
 class User
@@ -251,4 +251,57 @@ user.name
 
 
 
-7.3.4 
+# 7.3.4 クラスメソッドの定義
+
+# インスタンスメソッドの定義の項で説明した通り、クラス構文の内部で普通にメソッドを
+# 定義すると、そのメソッドはインスタンスメソッドになります。
+
+
+class User
+    def initialize(name)
+        @name = name
+
+        def hello
+            "Hello,I am #{@name}."
+        end
+    end
+end
+alice.hello
+
+bob = User.new("Bob")
+
+bob.hello
+=>"Hello,I am Bob"
+
+一方、そのクラスに関連は深いものの、一つのインスタンスに含まれるデータは使わないメソッドを定義したい場合もあります。
+クラスメソッドを定義する方法
+class クラス名
+    def self.クラスメソッド
+    end
+end
+
+例
+class User
+    def initialize(name)
+        @name = name
+    end
+    def self.create_users(names)
+        names.map do |name|
+            User.new(name)
+
+        end
+    end
+    def hello
+        "Hello,I am #{@name}."
+    end
+end
+
+names = ['Alice','Bob','Carol']
+users = User.create_users(names)
+users.each do |user|
+    puts user.hello
+end
+
+ところで、この項ではUser.create_usersのようなメソッドをクラスメソッドと呼びましたが、このようなメソッドは厳密にいうとクラスオブジェクトの得意メソッドを定義していることになります。
+
+
