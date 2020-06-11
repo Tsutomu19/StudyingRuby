@@ -27,3 +27,38 @@ user.hello
 
 
 
+7.7.2 privateメソッド
+次にprotectedメソッドは一旦飛ばして、privateメソッドの説明
+クラスの外からは呼び出せず、クラスないでprivateキーワードをかくと
+そこから下で定義されたメソッドはprivateメソッドになります。
+
+
+class User
+    private
+    def hello 
+        'Hello!'
+    end
+end
+user = User.new
+
+user.hello
+# NoMethodError (private method `hello' called for #<User:0x00007fcfea86b160>)
+# 外部からは呼び出せない
+
+
+class User
+    def hello
+        # nameメソッドはprivateなのでselfをつけるとエラーになる
+        "Hello, I am #{self.name}."
+    end
+
+    private 
+
+    def name 
+        'Alice'
+    end
+
+    user = User.new 
+    user.hello 
+end
+# 反対にselfを省略して呼び出すとエラーは発生しません。
