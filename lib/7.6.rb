@@ -87,12 +87,46 @@ user.instancd_of?(String)
 
 
 user = User.new
-
+# instance_of?はクラスが全く同じ出ないとtrueにならない
 user.instance_of?(Object)
-
+# is_a?はis-a関係にあればtrueになる
 user.is_a?(User)
 
 user.is_a?(Object)
+# =>true
 user.is_a?(BasicObject)
-
+# true
 user.is_a?(String)
+
+
+
+おさらい
+
+BasicObject
+
+Object
+
+String Numeric Array Hash
+
+
+
+7.6.4 他のクラスを継承下クラスを作る
+
+独自のクラスを定義する際はObjectクラス以外のクラスを継承することもできます。
+
+
+Product
+
+DVD
+
+
+
+class Product
+end
+
+一方、DVDクラスはProductクラスを継承する必要があります。
+Objectクラス以外のクラスを継承する場合は次のような構文を使います。
+
+class DVD < Product 
+end
+
