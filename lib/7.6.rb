@@ -37,3 +37,29 @@ DVDは商品の一種である。（DVD is aproduct)
 
 継承関係の要点にいるのはBasicObjectクラスです。それをObjectkクラスが継承しています。
 このことからStringクラスやArrayクラスは、Objectクラスとis-aの関係にある、つまりStringはObjectの一種でArrayもObjectの一種と言えます
+
+
+# 7.6.2　デフォルトで継承されるBasicObjectクラスです。それをObjectkクラスが継承しています。
+# この章のサンプルコードで使ったUserクラスのように、独自に作成下クラスはデフォルトでObjectクラスを継承しています。
+# 例えば次のように中身を全くかあkないクラスを作成
+
+
+class User
+end
+
+
+# このクラスにはメソッドを何一つ定義していませんがUserクラスのオブジェクトはto_sメソッドやnil?メソッドを呼び出すことができます。
+user = User.new
+user.to_s
+# =><User:0x007f8f9286d598>
+user.nil?
+# =>false
+
+これはUserクラスがObjectクラスを継承しているためです
+
+User.superclass
+
+user = User.new
+user.methods.sort
+
+7.6.3 
