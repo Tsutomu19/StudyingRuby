@@ -166,4 +166,39 @@ dvd.running_time
 
 
 
+メソッドのオーバーライド
+
+サブクラスではスーパークラスと同名のメソッドを定義することで、
+スーパークラスの処理を上書きすることができます。
+これをメソッドのオーバーライドと言います。
+
+to_sメソッドはオブジェクトの内容を文字列に変換して返すメソッドです。
+
+
+
+class Product
+    attr_reader :name, :price
+
+    def initialize(name,price)
+        @name = name 
+        @price = price 
+
+    end
+end
+
+class DVD < Product 
+    attr_reader :running_time
+
+    def initialize(name,price,running_time)
+        super(name,price)
+        @running_time = running_time
+    end
+end
+
+product = Product.new('A great movie', 1000)
+product.to_s 
+
+dvd = DVD.new('An awesome film', 3000, 120)
+dvd.to_s 
+
 
