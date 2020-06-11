@@ -62,4 +62,37 @@ User.superclass
 user = User.new
 user.methods.sort
 
-7.6.3 
+# 7.6.3 オブジェクトのクラスを確認する
+
+
+オブジェクトのクラスを調べる場合はclassメソッドを使います。
+
+user = User.new
+user.class
+# =>User
+
+instance_of?メソッドを使って調べることもできます。
+
+
+user = User.new
+
+user.instance_of?(User)
+
+user.instance_of?(String)
+
+
+user.instancd_of?(String)
+
+
+
+
+user = User.new
+
+user.instance_of?(Object)
+
+user.is_a?(User)
+
+user.is_a?(Object)
+user.is_a?(BasicObject)
+
+user.is_a?(String)
