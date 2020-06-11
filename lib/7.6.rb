@@ -218,3 +218,4 @@ end
 # Fooを継承したBarでもクラスメソッドのhelloが呼び出せる 
 Foo.hello 
 Bar.hello 
+
