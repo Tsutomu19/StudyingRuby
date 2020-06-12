@@ -62,3 +62,42 @@ class User
     user.hello 
 end
 # 反対にselfを省略して呼び出すとエラーは発生しません。
+
+
+
+
+
+# 7.7.3 privateメソッドはサブクラスでも呼び出せる
+
+
+他にも注意するべき点があります。
+他の言語ではprivareメソッドはそのクラスの内部でのみ呼び出せると言う場合がありますが、
+privateメソッドはそのクラスだけでなくサブクラスでも呼び出せる（ruby)
+
+class Product
+    private
+
+    def name 
+        'A great movie'
+    end
+end
+
+class DVD < Product
+    def to_s
+        # nameはスーパクラスのprivateメソッド
+        name: "#{naem}"
+    end
+end
+
+dvd = DVD.new
+
+dvd.to_s
+
+# 内部でスーパークラスのprivateメソッドを呼んでいるがエラーにならない
+dvd.to_s 
+
+ご覧の通り、サブクラスからでもスーパークラスのprivateメソッドを呼び出せています
+Productクラスのコードだけを見るとnameメソッドはどこからも使われてないじゃないかと思うかもしれません
+この場合だとnaemメソッドを削除するとDVDクラスのto_sメソッドでエラーが起きる
+
+
