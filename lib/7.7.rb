@@ -150,3 +150,26 @@ User.hello
 # privateなクラスメソッドにはならない
 
 
+7.7.5 privateメソッド先に定義する場合
+
+privateキーワードの下に定義したメソッドがprivateメソッドになるように
+publicキーワードの下に定義したメソッドはpublicメソッドやpublicメソッドを好きな順番で定義することができます。
+
+class User
+    private
+
+    def foo
+
+    end
+
+    public
+
+    def bar
+
+    end
+end
+
+ですが通常はprivateキーワードを使うのは1回だけにして、クラスの最後の方にprivateメソッドの定義をまとめることの方が多いです。
+
+
+
