@@ -309,3 +309,198 @@ privateメソッドはサブクラスでも呼び出せるの項ではRubyのpri
 これと同じ問題はインスタンス変数でも起こります。インスタンス変数もスーパークラスをサブクラスで共有されるため
 スーパークラスの実装を下図に偶然同じ名前のインスタンス変数を定義するとバグの要因になってしまう
 
+
+
+7.8　定数についてもっと詳しく
+
+定数はクラスの外部から直接参照することも可能です。クラスの外部から定数を参照する場合は次のような構文を使います。
+
+
+クラス名::定数名
+
+以下はクラスの外部から定数を参照するコード例です。
+
+class Product
+    DEFAULT_PRICE = 0
+end
+
+Product::DEFAULT_PRICE
+
+
+定数をクラスの外部から参照させたくない場合はprivate_constantで定数名を指定します。
+
+ですが、rubyの場合は何か特別な理由がないかぎりわざわざ　privateにすることは少ないと思います。
+
+
+
+class Product
+    DEFAULT_PRICE = 0
+    # 定数をprivateにする
+    private_constant :DEFAULT_PRICE
+end
+
+Product::DEFAULT_PRICE
+# NameError (private constant Product::DEFAULT_PRICE referenced)
+class Product
+    def foo
+        # メソッド内部で定数を作成すると構文エラーになる
+        DEFAULT_PRICE = 0
+    end
+end
+# SyntaxError
+
+
+
+
+7.8.1　定数と再代入
+
+
+さて、ここからはまた他の言語の経験者が少しびっくりするような説明をしていきます。
+
+Rubyの定数はみんなわざわざ変更するなよと周りに念を押した変数のようなものです。
+
+そのままの状態では定数を色々と変更できてしまいます。
+
+まず、定数には再代入が可能です。なので定数の値を後から書き換えることができます。
+
+
+
+
+
+
+
+class Product
+    DEFAULT_PRICE = 0
+    DEFAULT_PRICE = 1000
+end
+
+Procuct::DEFAULT_PRICE = 3000
+
+Procuct::DEFAULT_PRICE
+
+
+
+ご覧の通り定数はすでに初期化済みであると警告は表示されますが、再代入自体は成功してしまいます。
+クラスの外部からの再代入を防ぎたいたい場合はクラスをfreezeします。こうすると
+クラスは変更を受け付けなくなります。
+
+
+
+Product.freeze
+Procuct::DEFAULT_PRICE = 5000
+
+
+
+ですがRubyの場合、普通は定数を上書きする人はいないだろうと言うことで、わざわざクラスを
+freezeさせることは少ない。と思います。
+
+
+
+class Product
+    DEFAULT_PRICE = 0
+    freeze 
+    DEFAULT_PRICE = 1000
+end
+
+
+# 7.8.2　定数はミュータブルなオブジェクトに注意する
+
+
+次に再代入をしなくてもミュータブルなオブジェクトあれば定数の値を変えることができます。
+ミュータブルなオブジェクトがあれば定数の値を変えることができます。
+
+ミュータブルなオブジェクトとは、例えば文字列や配列、ハッシュなどです
+
+
+
+
+class Product
+    Name = 'A product'
+    SOME_NAMES = ['Foo','Bar','Baz']
+    SOME_PRICES = {'Foo' => 1000,'Bar'=> 2000,'Baz'=>3000}
+end
+
+# 文字列を破壊的に大文字に変更する
+Product::NAME.upcase!
+Product::NAME
+
+# 配列に新しい要素追加する
+Product::SOME_NAMES << 'Hoge'
+Product::SOME_NAMES
+
+# ハッシュに新しいキーと値を追加する
+Product::SOME_PRICES['Hoge'] = 4000
+Product:SOME_PRICES
+
+
+ご覧の通り、定数のなかみが変更されてしまいました。
+上のコードは定数を直後変更しているので見た目にも定数にも定数を変更していると言うことが
+明らかですが定数の値を変数に代入してしまうと定数を変更していることに気づ来にくくなります。
+
+
+class Product
+    SOME_NAMES = ['Foo','Bar','Baz']
+
+    def self.names_without_foo(names = SOME_NAMES)
+        names.delete('Foo')
+        names
+    end
+end
+
+Product.names_without_foo
+
+Product::SOME_NAMES
+
+
+
+
+class Product
+    # 配列を凍結する
+    SOME_NAMES = ['Foo','Bar','Baz'].freeze
+    def self.names_without_foo(names = SOME_NAMES)
+        # freezeしている配列に対しては破壊的な変更はできません
+        names.delete('Foo')
+        names
+    end
+end
+# エラーが発生するのでうっかり定数の値が変更される事故が防げる
+Product.names_without_foo
+
+しかし上のコードもまだ完璧ではありません。配列やハッシュをfreezeすると配列やハッシュそのものへの変更は防止できますが配列やハッシュの各要素はfreezeしません。
+よって、次のようなコードをかくと定数の内容はやはり変更されてしまいます。
+
+
+
+
+class Product
+    # 配列を凍結されるが中身の文字列はfreezeされない
+    SOME_NAMES = ['Foo','Bar','Baz'].freeze
+end
+# 1番目の要素を破壊的に大文字に変更する
+Product::SOME_NAMES[0].upcase!
+# 1番目の要素の値が変わってしまった。
+Product::SOME_NAMES
+# => ["FOO", "Bar", "Baz"]
+
+
+この事故も防ぎたいとなると各要素の値も別途freezeする必要があります。
+
+class Product
+    # 中身の文字列もfreezeする
+    SOME_NAMES = ['Foo'.freeze,'Bar'.freeze,'Baz'.freeze].freeze
+
+end
+# 今度の中身もfreezeしているので破壊的な変更はできません。
+Product::SOME_NAMES[0].upcase!
+
+
+
+
+なお、次のようにmapメソッドを使うと、freezeをなんども書かずにすみます。
+
+
+
+SOME_NAMES = ['Foo','Bar','Baz'].map(&:frreze).freeze
+
+
+配列やハッシュの中身まで全てfrrezeするのは少し大変かもしれません。プログラムの規模や要件に応じて、freezeを適用するレベルを検討してください。
