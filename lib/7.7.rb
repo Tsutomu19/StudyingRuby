@@ -101,3 +101,52 @@ Productクラスのコードだけを見るとnameメソッドはどこからも
 この場合だとnaemメソッドを削除するとDVDクラスのto_sメソッドでエラーが起きる
 
 
+
+
+7.7.4 クラスメソッドをprivateにした場合
+
+privateメソッドになるのはインスタンスメソッドだけです。
+クラスメソッドはprivareキーワードの下に定義してもprivareになりません。
+
+class user 
+    private
+    def self.hello
+        'Hello!'
+    end
+end
+
+user.hello
+# =>Hello!
+
+class User
+    class << self
+        private
+        def hello
+            'Hello!'
+        end
+    end
+end
+User.hello
+# NoMethodError (private method `hello' called for User:Class)
+
+
+
+class << self を使わない場合は
+private_class_methodでクラスメソッドの定義語に公開レベルを変更することができます。
+
+
+class User
+    def self.hello
+        'Hello'
+    end
+    private_class_method :hello
+end
+
+User.hello 
+# NoMethodError (private method `hello' called for User:Class)
+
+
+# このようにクラスメソッドはインスタンスメソッドを同じようにprivateキーワードの下に定義しても
+# privateなクラスメソッドにはならない
+
+
