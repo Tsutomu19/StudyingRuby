@@ -187,3 +187,42 @@ DVD.name
 
 
 @@nameはクラスメソッド内でもインスタンスメソッド無いでも共有されています。
+
+
+
+7.9.3 グローバル変数と組み合わせ変数
+Rubyにはもう一種、グローバル変数というタイプの変数があります。
+グローバル変数は$some_valueのように、$で変数名を始めます。
+
+グローバル変数はクラスの内部、外部を問わず、プログラムのどこからでも変更、参照可能。
+
+
+
+$program_name = 'Awesome program'
+
+
+class Program
+    def initialize(name)
+        $program_name = naem
+    end
+
+    def self.name 
+        $program_name 
+    end
+
+    def name 
+        $program_name
+    end
+end
+
+
+Program.name 
+program = Program.new('Super program')
+
+
+
+
+
+極力組み込み変数の仕様は避け、他の人が理解しやすいコードをかくことを心がけましょう。
+
+
