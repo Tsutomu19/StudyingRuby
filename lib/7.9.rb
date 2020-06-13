@@ -80,6 +80,17 @@ end
 
 
 class Product
+    @name = 'Product'
+
+    def self.name
+        @@name
+    end
+    def initialize(name)
+        @name = name
+    end
+    def name 
+        @name 
+    end
 
 end
 
@@ -113,9 +124,66 @@ DVD.name
 
 
 
-残り40パーセント
-あと4日
-60 / 4 ＝　15%/日
+# 残り40パーセント
+# あと4日
+# 60 / 4 ＝　15%/日
 
-一日8時間だから
-1時間で2%進む
+# 一日8時間だから
+# 1時間で2%進む
+
+
+# 7.9.2 クラス変数
+
+
+クラスインタンス変数はインスタンスメソッドないで共有されることがなくスーパークラスとサブクラスでも共有され流ことが無い。
+一方、Rubyにはクラスメソッド無いでもインスタンスメソッド内でも共有される変数も存在します。それがクラス変数です。クラス変数は@@some_valueのように、変数名の最初に@@を二つ重ねます。
+
+
+
+
+
+
+class Product
+    @@name = 'Product'
+
+    def self.name
+        @@name
+    end
+    def initialize(name)
+        @@name = name
+    end
+    def name 
+        @@name 
+    end
+
+end
+
+class DVD < Product
+    @@name = 'DVD'
+
+    def self.name 
+        @@naem
+    end
+
+    def upcase_name
+
+        @@name.upcase
+    end
+end
+
+
+Prodct.name
+DVD.name
+
+prodct = Product.new('A great movie')
+production.name
+
+dvd = DVD.new('An awesome film')
+dvd.name
+dvd.upcase_name 
+
+Production.name 
+DVD.name
+
+
+@@nameはクラスメソッド内でもインスタンスメソッド無いでも共有されています。
