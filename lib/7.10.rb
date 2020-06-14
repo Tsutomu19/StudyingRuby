@@ -3,3 +3,39 @@
 何か困った時にこの節を読み返せるように内容をざっくりと頭のすみにとどめておく
 
 
+7.10.1 エイリアスメソッドの定義
+
+Stringクラスのsizeメソッドはlengthメソッドのエイリアスメソッドです。
+
+エイリアスメソッドを定義する場合はaliasキーワードを呼び出す梅は先に元のメソッドを定義して置かないとエラーになります。
+
+以下はhelloメソッドのエイリアスメソッドとしてgreetingメソッドを定義する例です。
+
+class User
+
+    def hello
+        'Hello!'
+    end
+
+    alias greeting hello 
+end
+
+user = User.new
+user.hello 
+user.greeting 
+
+
+
+7.10.2　メソッドの削除　
+頻繁に使う機能ではありませんがrubyではメソッドの定義を後から削除することもできます。
+メソッドの定義を後から削除することもできます。
+
+
+class User 
+    undef freeze 
+end
+user = User.new 
+
+user.freeze 
+
+
