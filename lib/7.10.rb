@@ -47,3 +47,19 @@ class 外側のクラス
     class 内側のクラス
     end
 end
+
+
+7.10.4 演算子の挙動を独自に再定義する
+
+
+Rubyでは＝で終わるメソッドを再定義することができます。=で終わるメソッドは変数に代入する形式でそのメソッドを呼ぶことができます。
+
+
+class User
+    def name = (value)
+        @name = value
+    end
+end
+
+user = User.new
+user.name = 'Alice'
