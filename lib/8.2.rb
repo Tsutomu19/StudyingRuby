@@ -11,3 +11,31 @@
 
 
 8.2.2 モジューつの定義
+
+module Greeter 
+    def hello 
+        'hello'
+    end
+end
+
+クラスの定義によく似ていますが異なる
+
+モジュールからインスタンスを作成することはできない
+
+他のモジュールで上記のこと寄ろうとするとエラーが発生します。
+
+
+greeter = Greeter.new
+# NoMethodError
+module AwesomeGreeter < Greeter
+
+end
+# SyntaxError
+
+
+# モジュールの何が役に立つのか見ていく
+
+
+
+
+8.3 モジュールのミックスイン
